@@ -10,12 +10,11 @@ const Counter = () => {
   const counter = useSelector(state => state.counter);
   const show = useSelector(state => state.showCounter);
 
-
   const incrementHandler = () => {
     dispatch(counterActions.increment());
   }
 
-
+  // console.log(counterActions);
 
   const increaseHandler = () => {
     //payload 7umulah
@@ -42,7 +41,7 @@ const Counter = () => {
       <div>
         <button onClick={incrementHandler}>Increment</button>
 
-        <button onClick={increaseHandler}>Increase By 5</button>
+        <button onClick={increaseHandler}>Increase By 10</button>
 
         <button onClick={decrementHandler}>Decrement</button>
       </div>
@@ -58,6 +57,7 @@ export default Counter;
 //__________________________________________________________________________________________________________
 //                                        WITHOUT REDUX TOOLKIT
 /*
+
 import classes from './Counter.module.css';
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'

@@ -1,9 +1,13 @@
+//                       Create a Redux Store
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+
+const initialState = {
+    counter: 0,
+    showCounter: true
+};
 
 
-const initialState = { counter: 0, showCounter: true };
 
 const counterSlice = createSlice({
     name: 'counter',
@@ -25,14 +29,11 @@ const counterSlice = createSlice({
 });
 
 
-
-
-const store = configureStore({ reducer: counterSlice.reducer }, enhancer());
-
 export const counterActions = counterSlice.actions;
 
+export const store = configureStore({ reducer: counterSlice.reducer });
 
-export default store;
+
 
 
 
