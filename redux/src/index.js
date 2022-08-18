@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 //Provider huwe component
+// Provide the Redux Store to React
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
