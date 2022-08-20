@@ -31,10 +31,11 @@ const counterSlice = createSlice({
     }
 });
 
+console.log(counterSlice);
 
 export const counterActions = counterSlice.actions;
 
-//             Create a Redux Store
+//              Create a Redux Store
 
 export const store = configureStore({ reducer: counterSlice.reducer });
 
