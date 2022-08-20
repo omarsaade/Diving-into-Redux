@@ -1,4 +1,6 @@
 import classes from './UserProfile.module.css';
+import React from 'react'
+
 
 const UserProfile = () => {
   return (

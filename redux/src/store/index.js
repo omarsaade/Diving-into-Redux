@@ -5,18 +5,19 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialCounterState = {
     counter: 0,
     showCounter: true
 };
 
 
-
+// Now we wanna register this with our store.
 const counterSlice = createSlice({
     name: 'counter',
-    initialState,
+    initialCounterState,
     reducers: {
         increment(state) {
+            //redux toolkit internally uses another package called immer
             state.counter++;
         },
         decrement(state) {
@@ -31,15 +32,54 @@ const counterSlice = createSlice({
     }
 });
 
-console.log(counterSlice);
+//______________________________________________________________
+
+
+const initialAuthState = {
+    isAuthenticated: false
+};
+
+
+
+// Now we wanna register this with our store.
+const authSlice = createSlice({
+    name: 'authentication',
+    initialState: initialAuthState,
+    reducers: {
+        login(state) {
+            state.isAuthenticated = true;
+        },
+        logout(state) {
+            state.isAuthenticated = false;
+        },
+    }
+});
+
+
+
+
+
+
+
+
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 //              Create a Redux Store
+// reducer: counterSlice.reducer he el jemle bt5alina net7akam bel 4 reducers
 
-export const store = configureStore({ reducer: counterSlice.reducer });
+//multiple reducer
+export const store = configureStore({
+    reducer: {
+        counter: counterSlice.reducer,
+        auth: authSlice.reducer
+    }
+});
 
 
+// single reducer
+//export const store = configureStore({ reducer: counterSlice.reducer });
 
 
 
