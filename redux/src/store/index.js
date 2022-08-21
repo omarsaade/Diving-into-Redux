@@ -6,88 +6,85 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialCounterState = {
-    counter: 0,
-    showCounter: true
+  counter: 0,
+  showCounter: true
 };
 
 
 // Now we wanna register this with our store.
 const counterSlice = createSlice({
-    name: 'counter',
-    initialCounterState,
-    reducers: {
-        increment(state) {
-            //redux toolkit internally uses another package called immer
-            state.counter++;
-        },
-        decrement(state) {
-            state.counter--;
-        },
-        increase(state, action) {
-            state.counter = state.counter + action.payload;
-        },
-        toggleCounter(state) {
-            state.showCounter = !state.showCounter;
-        }
+  name: 'counter',
+  initialState: initialCounterState,
+  reducers: {
+    increment(state) {
+      //redux toolkit internally uses another package called immer
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+    increase(state, action) {
+      state.counter = state.counter + action.payload;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
     }
+  }
 });
 
 //______________________________________________________________
 
 
 const initialAuthState = {
-    isAuthenticated: false
+  isAuthenticated: false
 };
 
 
 
 // Now we wanna register this with our store.
 const authSlice = createSlice({
-    name: 'authentication',
-    initialState: initialAuthState,
-    reducers: {
-        login(state) {
-            state.isAuthenticated = true;
-        },
-        logout(state) {
-            state.isAuthenticated = false;
-        },
-    }
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    },
+  }
 });
 
 
 
 
-
-
-
-
-
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
-
 //              Create a Redux Store
 // reducer: counterSlice.reducer he el jemle bt5alina net7akam bel 4 reducers
 
 //multiple reducer
-export const store = configureStore({
-    reducer: {
-        counter: counterSlice.reducer,
-        auth: authSlice.reducer
-    }
+const store = configureStore({
+  reducer: {
+    //key names : reducers
+    // And these individual reducers here will then automatically be merged together
+    // into one main reducer, which is exposed to this store.
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer
+  }
 });
 
 
 // single reducer
 //export const store = configureStore({ reducer: counterSlice.reducer });
 
+export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
-
-
+export default store
 //___________________________________________________________________________________
 //                        WITHOUT REACT TOOLKIT
 
 // import { legacy_createStore as createStore } from 'redux'
+
 
 
 // const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
